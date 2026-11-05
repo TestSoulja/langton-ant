@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Муравей Лэнгтона — визуализация</title>
+  <meta name="description" content="Интерактивная визуализация клеточного автомата «Муравей Лэнгтона» на HTML Canvas: белая клетка — направо, чёрная — налево.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🐜</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">Клеточный автомат</p>
+      <h1>Муравей Лэнгтона</h1>
+      <p class="lead">
+        Белая клетка — поворот направо и чёрная метка. Чёрная клетка — поворот налево
+        и белая метка. Затем один шаг вперёд. Из этих двух правил рождается сложное
+        поведение: симметрия, хаос и знаменитое «шоссе».
+      </p>
+    </header>
+
+    <section class="board-card">
+      <canvas id="field" width="900" height="600" aria-label="Поле муравья Лэнгтона"></canvas>
+
+      <div class="controls">
+        <div class="buttons">
+          <button id="run" class="btn btn-primary" type="button" aria-pressed="false">▶ Старт</button>
+          <button id="step" class="btn" type="button">Шаг</button>
+          <button id="reset" class="btn" type="button">Сброс</button>
+        </div>
+
+        <label class="speed">
+          <span>Скорость: <output id="speedOut">50</output> шаг/кадр</span>
+          <input id="speed" type="range" min="1" max="2000" step="1" value="50" aria-label="Скорость симуляции">
+        </label>
+      </div>
+
+      <dl class="stats">
+        <div><dt>Шагов</dt><dd id="steps">0</dd></div>
+        <div><dt>Чёрных клеток</dt><dd id="black">0</dd></div>
+        <div><dt>Направление</dt><dd id="dir">→ вправо</dd></div>
+        <div><dt>Поле</dt><dd>150 × 100</dd></div>
+      </dl>
+    </section>
+
+    <section class="notes">
+      <h2>Что происходит на экране</h2>
+      <p>
+        Первые ~10 000 шагов муравей рисует симметричные узоры, затем движение
+        становится хаотичным, а примерно к 11 000-му шагу складывается «шоссе» —
+        устойчивый цикл из 104 шагов, который уводит муравья по прямой.
+      </p>
+      <p class="hint">
+        Поле замкнуто в тор: выйдя за край, муравей появляется с противоположной
+        стороны. Горячие клавиши: <kbd>Пробел</kbd> — старт/пауза,
+        <kbd>→</kbd> — один шаг, <kbd>R</kbd> — сброс.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
